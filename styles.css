@@ -305,9 +305,9 @@ nav {
    ============================================= */
 
 .btn {
-    padding: 2rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s;
