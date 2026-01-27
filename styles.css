@@ -307,7 +307,7 @@ nav {
 .btn {
     padding: 1rem 2rem;
     border-radius: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s;
@@ -1637,8 +1637,8 @@ footer {
 
     /* Buttons mobile */
     .btn {
-        padding: 0.9rem 1.5rem;
-        font-size: 0.85rem;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.9rem;
     }
 
     /* Cookie Banner mobile */
