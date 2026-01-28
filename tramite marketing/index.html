@@ -11,6 +11,8 @@
     <meta name="author" content="Tramite Marketing">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://tramitemarketing.it/">
+    <link rel="alternate" hreflang="it" href="https://tramitemarketing.it/">
+    <link rel="alternate" hreflang="x-default" href="https://tramitemarketing.it/">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#E63946">
@@ -55,13 +57,18 @@
         },
         "serviceType": ["Web Design", "SEO", "Social Media Marketing", "Branding"],
         "priceRange": "$$",
-        "sameAs": []
+        "sameAs": [
+            "https://www.instagram.com/tramitemarketing",
+            "https://www.linkedin.com/company/tramitemarketing",
+            "https://www.facebook.com/tramitemarketing"
+        ]
     }
     </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
@@ -474,15 +481,15 @@
             <div>
                 <div class="footer-logo">Tramite<span>Marketing</span></div>
                 <p class="footer-slogan">Pursuing Visibility</p>
-                <!-- Social Links - Aggiungere href quando disponibili -->
+                <!-- Social Links - TODO: Aggiornare con URL reali -->
                 <div class="footer-social">
-                    <a href="#" aria-label="Instagram" title="Seguici su Instagram" class="social-link" data-placeholder="instagram">
+                    <a href="https://www.instagram.com/tramitemarketing" aria-label="Instagram" title="Seguici su Instagram" class="social-link" target="_blank" rel="noopener noreferrer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
-                    <a href="#" aria-label="LinkedIn" title="Seguici su LinkedIn" class="social-link" data-placeholder="linkedin">
+                    <a href="https://www.linkedin.com/company/tramitemarketing" aria-label="LinkedIn" title="Seguici su LinkedIn" class="social-link" target="_blank" rel="noopener noreferrer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </a>
-                    <a href="#" aria-label="Facebook" title="Seguici su Facebook" class="social-link" data-placeholder="facebook">
+                    <a href="https://www.facebook.com/tramitemarketing" aria-label="Facebook" title="Seguici su Facebook" class="social-link" target="_blank" rel="noopener noreferrer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </a>
                 </div>
@@ -514,291 +521,6 @@
         </div>
     </div>
 
-    <script>
-        // =============================================
-        // MOBILE MENU
-        // =============================================
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const navMenu = document.getElementById('navMenu');
-        const navOverlay = document.getElementById('navOverlay');
-
-        function toggleMenu() {
-            const isOpen = hamburgerBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            navOverlay.classList.toggle('active');
-            hamburgerBtn.setAttribute('aria-expanded', isOpen);
-            hamburgerBtn.setAttribute('aria-label', isOpen ? 'Chiudi menu' : 'Apri menu');
-            navOverlay.setAttribute('aria-hidden', !isOpen);
-            document.body.style.overflow = isOpen ? 'hidden' : '';
-        }
-
-        hamburgerBtn.addEventListener('click', toggleMenu);
-        navOverlay.addEventListener('click', toggleMenu);
-
-        // Close menu on link click
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
-        });
-
-        // Close menu on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                toggleMenu();
-                hamburgerBtn.focus();
-            }
-        });
-
-        // =============================================
-        // SMOOTH SCROLL
-        // =============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const target = document.querySelector(targetId);
-                if (target) {
-                    e.preventDefault();
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // =============================================
-        // SCROLL ANIMATIONS
-        // =============================================
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.1
-        };
-
-        const animationObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    animationObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            animationObserver.observe(el);
-        });
-
-        // =============================================
-        // FORM VALIDATION
-        // =============================================
-        const formValidation = {
-            patterns: {
-                email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                phone: /^[\d\s+()-]{7,20}$/
-            },
-
-            messages: {
-                name: {
-                    required: 'Il nome è obbligatorio',
-                    minLength: 'Il nome deve avere almeno 2 caratteri'
-                },
-                email: {
-                    required: 'L\'email è obbligatoria',
-                    invalid: 'Inserisci un\'email valida'
-                },
-                phone: {
-                    invalid: 'Inserisci un numero valido'
-                },
-                message: {
-                    required: 'Il messaggio è obbligatorio',
-                    minLength: 'Il messaggio deve avere almeno 20 caratteri'
-                }
-            },
-
-            validateField(field) {
-                const value = field.value.trim();
-                const name = field.name;
-                const formGroup = field.closest('.form-group');
-                const errorSpan = document.getElementById(`${field.id}-error`);
-
-                let isValid = true;
-                let errorMessage = '';
-
-                // Required check
-                if (field.hasAttribute('required') && !value) {
-                    isValid = false;
-                    errorMessage = this.messages[name]?.required || 'Campo obbligatorio';
-                }
-                // Specific validations
-                else if (value) {
-                    switch(name) {
-                        case 'name':
-                            if (value.length < 2) {
-                                isValid = false;
-                                errorMessage = this.messages.name.minLength;
-                            }
-                            break;
-                        case 'email':
-                            if (!this.patterns.email.test(value)) {
-                                isValid = false;
-                                errorMessage = this.messages.email.invalid;
-                            }
-                            break;
-                        case 'message':
-                            if (value.length < 20) {
-                                isValid = false;
-                                errorMessage = this.messages.message.minLength;
-                            }
-                            break;
-                        case 'phone':
-                            if (value && !this.patterns.phone.test(value)) {
-                                isValid = false;
-                                errorMessage = this.messages.phone.invalid;
-                            }
-                            break;
-                    }
-                }
-
-                // Update UI
-                formGroup.classList.toggle('error', !isValid);
-                formGroup.classList.toggle('success', isValid && value);
-                if (errorSpan) {
-                    errorSpan.textContent = errorMessage;
-                }
-                field.setAttribute('aria-invalid', !isValid);
-
-                return isValid;
-            },
-
-            validateForm(form) {
-                const fields = form.querySelectorAll('input, textarea, select');
-                let isFormValid = true;
-
-                fields.forEach(field => {
-                    if (field.name && !this.validateField(field)) {
-                        isFormValid = false;
-                    }
-                });
-
-                return isFormValid;
-            }
-        };
-
-        // Attach validation
-        const quoteForm = document.getElementById('quoteForm');
-        const formFields = quoteForm.querySelectorAll('input, textarea');
-
-        formFields.forEach(field => {
-            field.addEventListener('blur', () => formValidation.validateField(field));
-            field.addEventListener('input', () => {
-                if (field.closest('.form-group').classList.contains('error')) {
-                    formValidation.validateField(field);
-                }
-            });
-        });
-
-        // Form submission
-        quoteForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            if (!formValidation.validateForm(this)) {
-                const firstError = this.querySelector('.form-group.error input, .form-group.error textarea');
-                if (firstError) firstError.focus();
-                return;
-            }
-
-            const form = e.target;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-
-            submitBtn.textContent = 'Invio in corso...';
-            submitBtn.disabled = true;
-
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    submitBtn.textContent = 'Richiesta inviata!';
-                    submitBtn.style.background = '#10B981';
-                    form.reset();
-
-                    // Remove success classes
-                    form.querySelectorAll('.form-group').forEach(group => {
-                        group.classList.remove('success', 'error');
-                    });
-
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.style.background = '';
-                        submitBtn.disabled = false;
-                    }, 3000);
-                } else {
-                    throw new Error('Errore invio');
-                }
-            })
-            .catch(error => {
-                submitBtn.textContent = 'Errore - Riprova';
-                submitBtn.style.background = '#EF4444';
-                submitBtn.disabled = false;
-
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.background = '';
-                }, 3000);
-            });
-        });
-
-        // =============================================
-        // COOKIE CONSENT
-        // =============================================
-        const cookieBanner = document.getElementById('cookieBanner');
-        const cookieAccept = document.getElementById('cookieAccept');
-        const cookieReject = document.getElementById('cookieReject');
-
-        function setCookieConsent(consent) {
-            localStorage.setItem('cookieConsent', JSON.stringify({
-                consent: consent,
-                timestamp: new Date().toISOString()
-            }));
-            cookieBanner.classList.remove('visible');
-
-            if (consent) {
-                // Initialize analytics or other tracking here if needed
-                // gtag('consent', 'update', { analytics_storage: 'granted' });
-            }
-        }
-
-        function checkCookieConsent() {
-            const stored = localStorage.getItem('cookieConsent');
-            if (!stored) {
-                setTimeout(() => {
-                    cookieBanner.classList.add('visible');
-                }, 1500);
-            }
-        }
-
-        cookieAccept.addEventListener('click', () => setCookieConsent(true));
-        cookieReject.addEventListener('click', () => setCookieConsent(false));
-
-        checkCookieConsent();
-
-        // =============================================
-        // DYNAMIC YEAR
-        // =============================================
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
+    <script src="main.js" defer></script>
 </body>
 </html>
