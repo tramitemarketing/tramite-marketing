@@ -1224,7 +1224,7 @@ footer {
    RESPONSIVE - 1024px (TABLET / NAV COLLAPSE)
    ============================================= */
 
-@media (max-width: 1024px) {
+@media (max-width: 1324px) {
     /* Navigation collapses to hamburger */
     .hamburger {
         display: flex;
