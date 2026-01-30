@@ -24,11 +24,23 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--white);
     color: var(--dark);
     line-height: 1.6;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* =============================================
@@ -97,7 +109,7 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: clamp(1.25rem, 2vw, 2.5rem);
     list-style: none;
     align-items: center;
 }
@@ -117,9 +129,10 @@ nav {
 .nav-cta {
     background: var(--red);
     color: white !important;
-    padding: 0.65rem 1.5rem;
+    padding: 0.65rem clamp(1rem, 2vw, 1.5rem);
     border-radius: 8px;
     transition: background 0.2s, transform 0.2s !important;
+    white-space: nowrap;
 }
 
 .nav-cta:hover {
@@ -190,7 +203,7 @@ nav {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 0 5%;
+    padding: 6rem 5% 3rem;
     background: var(--off-white);
     position: relative;
     overflow: hidden;
@@ -199,7 +212,7 @@ nav {
 .hero-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: clamp(2rem, 4vw, 4rem);
     align-items: center;
     max-width: 1300px;
     margin: 0 auto;
@@ -305,9 +318,9 @@ nav {
    ============================================= */
 
 .btn {
-    padding: 1rem 2rem;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s;
@@ -316,6 +329,8 @@ nav {
     gap: 0.5rem;
     cursor: pointer;
     border: none;
+    max-width: 100%;
+    text-align: center;
 }
 
 .btn-primary {
@@ -385,7 +400,7 @@ section {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -446,7 +461,7 @@ section {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -551,7 +566,7 @@ section {
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     gap: 2rem;
     max-width: 1100px;
     margin: 0 auto;
@@ -765,7 +780,7 @@ section {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2.5rem;
     max-width: 1000px;
     margin: 0 auto;
@@ -950,7 +965,7 @@ section {
 
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
     gap: 1.5rem;
     max-width: 800px;
     margin: 0 auto;
@@ -1206,59 +1221,11 @@ footer {
 }
 
 /* =============================================
-   RESPONSIVE - 1000px
+   RESPONSIVE - 1024px (TABLET / NAV COLLAPSE)
    ============================================= */
 
-@media (max-width: 1000px) {
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero-image {
-        order: -1;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .hero-stats {
-        justify-content: center;
-    }
-}
-
-/* =============================================
-   RESPONSIVE - 900px
-   ============================================= */
-
-@media (max-width: 900px) {
-    .quote-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .quote-info {
-        text-align: center;
-    }
-
-    .quote-benefit {
-        justify-content: center;
-    }
-}
-
-/* =============================================
-   RESPONSIVE - 768px (MOBILE)
-   ============================================= */
-
-@media (max-width: 768px) {
-    /* Navigation Mobile */
-    nav {
-        padding: 1rem 5%;
-    }
-
+@media (max-width: 1024px) {
+    /* Navigation collapses to hamburger */
     .hamburger {
         display: flex;
     }
@@ -1297,17 +1264,64 @@ footer {
         margin-top: 1rem;
         text-align: center;
         display: block;
+        padding: 0.85rem 1.5rem;
+        white-space: normal;
+    }
+
+    /* Hero goes single column */
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: -1;
+        max-width: 550px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    /* Quote section single column */
+    .quote-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .quote-info {
+        text-align: center;
+    }
+
+    .quote-benefit {
+        justify-content: center;
+    }
+}
+
+/* =============================================
+   RESPONSIVE - 768px (MOBILE)
+   ============================================= */
+
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 5%;
     }
 
     /* Hero Mobile */
     .hero {
-        padding-top: 80px;
-        min-height: auto;
-        padding-bottom: 3rem;
+        padding-top: 5rem;
+        min-height: 100vh;
+        padding-bottom: 2rem;
     }
 
     .hero h1 {
-        font-size: 1.85rem;
+        font-size: clamp(1.6rem, 5.5vw, 1.85rem);
         letter-spacing: -0.5px;
         line-height: 1.2;
     }
@@ -1319,6 +1333,10 @@ footer {
     .hero-slogan {
         font-size: 0.75rem;
         letter-spacing: 1.5px;
+    }
+
+    .hero-image {
+        max-width: 400px;
     }
 
     .hero-stats {
@@ -1365,7 +1383,7 @@ footer {
     }
 
     .section-header h2 {
-        font-size: 1.6rem;
+        font-size: clamp(1.4rem, 4.5vw, 1.75rem);
         letter-spacing: -0.5px;
     }
 
@@ -1635,12 +1653,6 @@ footer {
         font-size: 0.75rem;
     }
 
-    /* Buttons mobile */
-    .btn {
-        padding: 0.85rem 1.5rem;
-        font-size: 0.9rem;
-    }
-
     /* Cookie Banner mobile */
     .cookie-content {
         flex-direction: column;
@@ -1654,19 +1666,88 @@ footer {
 }
 
 /* =============================================
+   RESPONSIVE - 480px (SMALL PHONES)
+   ============================================= */
+
+@media (max-width: 480px) {
+    .hero {
+        padding-top: 4.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-image {
+        max-width: 100%;
+    }
+
+    .hero-image-placeholder {
+        border-radius: 12px;
+    }
+
+    section {
+        padding: 2.5rem 4%;
+    }
+
+    .quote-form {
+        padding: 1.5rem 1rem;
+    }
+
+    .cookie-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .footer-links {
+        gap: 0.5rem;
+    }
+
+    .contact-card {
+        padding: 1.25rem 1rem;
+    }
+}
+
+/* =============================================
    RESPONSIVE - 380px (EXTRA SMALL)
    ============================================= */
 
 @media (max-width: 380px) {
     .hero h1 {
-        font-size: 1.6rem;
+        font-size: 1.35rem;
+        letter-spacing: -0.3px;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
     }
 
     .section-header h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .logo {
         font-size: 1.15rem;
+    }
+
+    .hero-stats {
+        gap: 1rem;
+    }
+
+    .hero-stat h3 {
+        font-size: 1.3rem;
+    }
+
+    .hero-stat p {
+        font-size: 0.75rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .service-card {
+        padding: 1.5rem 1.25rem;
     }
 }
