@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tramitemarketing.it/sitemap.xml
+Sitemap: https://tramite-marketing.pages.dev/sitemap.xml
