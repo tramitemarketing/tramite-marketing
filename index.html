@@ -68,8 +68,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
@@ -78,8 +77,8 @@
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
 
-    <nav role="navigation" aria-label="Menu principale">
-        <div class="logo">Tramite<span>Marketing</span></div>
+    <nav aria-label="Menu principale">
+        <a href="#" class="logo" aria-label="Tramite Marketing - Torna alla home">Tramite<span>Marketing</span></a>
 
         <!-- Hamburger Button -->
         <button class="hamburger" id="hamburgerBtn" aria-label="Apri menu" aria-expanded="false" aria-controls="navMenu">
@@ -92,16 +91,16 @@
         <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
         <!-- Navigation Menu -->
-        <ul class="nav-links" id="navMenu" role="menubar">
-            <li role="none"><a href="#servizi" role="menuitem">Servizi</a></li>
-            <li role="none"><a href="#portfolio" role="menuitem">Portfolio</a></li>
-            <li role="none"><a href="#chi-siamo" role="menuitem">Chi Siamo</a></li>
-            <li role="none"><a href="#contatti" role="menuitem">Contatti</a></li>
-            <li role="none"><a href="#preventivo" class="nav-cta" role="menuitem">Preventivo Gratuito</a></li>
+        <ul class="nav-links" id="navMenu">
+            <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#chi-siamo">Chi Siamo</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+            <li><a href="#preventivo" class="nav-cta">Preventivo Gratuito</a></li>
         </ul>
     </nav>
 
-    <main id="main-content" role="main">
+    <main id="main-content">
         <section class="hero">
             <div class="hero-container">
                 <div class="hero-content">
@@ -476,12 +475,11 @@
         </section>
     </main>
 
-    <footer role="contentinfo">
+    <footer>
         <div class="footer-content">
             <div>
                 <div class="footer-logo">Tramite<span>Marketing</span></div>
                 <p class="footer-slogan">Pursuing Visibility</p>
-                <!-- Social Links - TODO: Aggiornare con URL reali -->
                 <div class="footer-social">
                     <a href="https://www.instagram.com/tramitemarketing" aria-label="Instagram" title="Seguici su Instagram" class="social-link" target="_blank" rel="noopener noreferrer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
