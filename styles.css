@@ -256,7 +256,7 @@ nav {
     letter-spacing: -1.5px;
     line-height: 1.15;
     margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s ease-out 0.1s backwards, float 2s ease-in-out infinite;
+    animation: fadeUp 0.6s ease-out 0.1s backwards;
 }
 
 .hero h1 span {
