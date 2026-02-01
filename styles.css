@@ -102,11 +102,25 @@ nav {
     color: var(--dark);
     letter-spacing: -0.5px;
     text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease, color 0.2s ease;
+    color: var(--red);
+}
+
+.logo:hover span {
+    color: var(--dark);
+    transition: color 0.2s ease;
 }
 
 .logo span {
     color: var(--red);
+    transition: color 0.2s ease;
 }
+
 
 .nav-links {
     display: flex;
@@ -139,6 +153,7 @@ nav {
 .nav-cta:hover {
     background: var(--red-dark);
     transform: translateY(-1px);
+    animation: pulseGlow 1s ease-in-out infinite;
 }
 
 /* Hamburger Button */
@@ -218,6 +233,7 @@ nav {
     max-width: 1300px;
     margin: 0 auto;
     width: 100%;
+    animation: float 4s ease-in-out infinite;
 }
 
 .hero-content {
@@ -233,7 +249,6 @@ nav {
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 1rem;
-    animation: fadeUp 0.6s ease-out;
 }
 
 .hero h1 {
@@ -242,11 +257,12 @@ nav {
     letter-spacing: -1.5px;
     line-height: 1.15;
     margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s ease-out 0.1s backwards;
+    animation: fadeUp 0.6s ease-out 0.1s backwards, float 4s ease-in-out infinite;
 }
 
 .hero h1 span {
     color: var(--red);
+    animation: colorGlow 4s ease-in-out infinite;
 }
 
 .hero p {
@@ -264,36 +280,6 @@ nav {
     flex-wrap: wrap;
     animation: fadeUp 0.6s ease-out 0.3s backwards;
 }
-
-.hero-image {
-    position: relative;
-    animation: fadeUp 0.8s ease-out 0.2s backwards;
-}
-/*
-.hero-image-placeholder {
-    width: 100%;
-    aspect-ratio: 4/3;
-    background: linear-gradient(135deg, var(--gray-light) 0%, var(--peach) 100%);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gray);
-    font-size: 0.9rem;
-    text-align: center;
-    padding: 2rem;
-    border: 2px dashed var(--gray-light);
-    animation: float 4s ease-in-out infinite;
-}
-*/
-.hero-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
-    object-fit: cover;
-    animation: float 4s ease-in-out infinite;
-}
-
 .hero-stats {
     display: flex;
     gap: 2.5rem;
@@ -337,21 +323,33 @@ nav {
 }
 
 .btn-primary {
-    background: var(--red);
     color: white;
-    animation: pulseGlow 3s ease-in-out infinite;
+    background: linear-gradient(110deg, var(--red) 30%, var(--coral) 50%, var(--red) 70%);
+    background-size: 200% 100%;
+    animation: shimmer 5s linear infinite;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
 }
 
 .btn-primary:hover {
-    background: var(--red-dark);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.25);
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.45);
+    background: linear-gradient(110deg, var(--red) 30%, var(--coral) 50%, var(--red) 70%);
+    background-size: 200% 100%;
 }
 
 .btn-secondary {
     background: var(--white);
     color: var(--dark);
     border: 2px solid var(--gray-light);
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
 }
 
 .btn-secondary:hover {
@@ -1115,7 +1113,7 @@ footer {
 }
 
 .social-link:hover {
-    background: var(--red);
+    background: rgb(228, 43, 105);
     color: var(--white);
     transform: translateY(-2px);
 }
@@ -1143,6 +1141,11 @@ footer {
 @keyframes pulseGlow {
     0%, 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4); }
     50% { box-shadow: 0 0 20px 4px rgba(230, 57, 70, 0.15); }
+}
+
+@keyframes colorGlow {
+    0%, 100% { color: var(--red); text-shadow: 0 0 10px rgba(255, 107, 107, 0.4); }
+    50% { color:rgb(233, 13, 31); text-shadow: 0 0 20px rgba(231, 8, 8, 0.6); }
 }
 
 @keyframes shimmer {
