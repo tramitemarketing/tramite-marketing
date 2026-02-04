@@ -1136,7 +1136,7 @@ section {
 
 .form-group.floating label {
     position: absolute;
-    top: 50%;
+    top: calc(50% + 0.25rem);
     left: 1rem;
     transform: translateY(-50%);
     color: var(--gray);
