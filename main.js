@@ -54,17 +54,15 @@
             if (target) {
                 e.preventDefault();
                 const navHeight = document.querySelector('nav').offsetHeight;
-                const offset = 20; // Extra spacing
+                const offset = 20;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - offset;
 
-                // Fallback for browsers that don't support smooth scroll
                 if ('scrollBehavior' in document.documentElement.style) {
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
                     });
                 } else {
-                    // Smooth scroll polyfill for older browsers
                     smoothScrollTo(targetPosition, 600);
                 }
             }
@@ -72,7 +70,7 @@
     });
 
     // =============================================
-    // SCROLL ANIMATIONS
+    // SCROLL ANIMATIONS (fade-in on scroll)
     // =============================================
     const observerOptions = {
         root: null,
@@ -92,6 +90,20 @@
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         animationObserver.observe(el);
     });
+
+    // =============================================
+    // SCROLL PROGRESS BAR
+    // =============================================
+    const scrollProgress = document.getElementById('scrollProgress');
+
+    function updateScrollProgress() {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (scrollHeight > 0) {
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        }
+    }
 
     // =============================================
     // FORM VALIDATION
@@ -129,12 +141,10 @@
             let isValid = true;
             let errorMessage = '';
 
-            // Required check
             if (field.hasAttribute('required') && !value) {
                 isValid = false;
                 errorMessage = this.messages[name]?.required || 'Campo obbligatorio';
             }
-            // Specific validations
             else if (value) {
                 switch(name) {
                     case 'name':
@@ -164,7 +174,6 @@
                 }
             }
 
-            // Update UI
             formGroup.classList.toggle('error', !isValid);
             formGroup.classList.toggle('success', isValid && value);
             if (errorSpan) {
@@ -194,15 +203,13 @@
     const formFields = quoteForm.querySelectorAll('input, textarea');
 
     formFields.forEach(field => {
-        // Real-time validation on input (for better UX)
         field.addEventListener('input', () => {
             const formGroup = field.closest('.form-group');
             if (formGroup.classList.contains('error') || field.value.trim().length > 0) {
                 formValidation.validateField(field);
             }
         });
-        
-        // Validation on blur (for required fields)
+
         field.addEventListener('blur', () => {
             if (field.hasAttribute('required') || field.value.trim().length > 0) {
                 formValidation.validateField(field);
@@ -222,10 +229,8 @@
 
         const form = e.target;
         const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
         const originalHTML = submitBtn.innerHTML;
 
-        // Add loading state
         submitBtn.innerHTML = '<span class="btn-spinner"></span> Invio in corso...';
         submitBtn.disabled = true;
         submitBtn.classList.add('loading');
@@ -244,12 +249,10 @@
                 submitBtn.classList.add('success');
                 form.reset();
 
-                // Remove success classes from form groups
                 form.querySelectorAll('.form-group').forEach(group => {
                     group.classList.remove('success', 'error');
                 });
 
-                // Scroll to form to show success
                 submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
                 setTimeout(() => {
@@ -261,7 +264,7 @@
                 throw new Error('Errore invio');
             }
         })
-        .catch(error => {
+        .catch(() => {
             submitBtn.innerHTML = '✗ Errore - Riprova';
             submitBtn.classList.remove('loading');
             submitBtn.classList.add('error');
@@ -287,19 +290,13 @@
             timestamp: new Date().toISOString()
         }));
         cookieBanner.classList.remove('visible');
-
-        if (consent) {
-            // Initialize analytics or other tracking here if needed
-            // gtag('consent', 'update', { analytics_storage: 'granted' });
-        }
     }
 
     function checkCookieConsent() {
         const stored = localStorage.getItem('cookieConsent');
         if (!stored) {
-            // Show cookie banner after user scrolls or after 3 seconds
             let shown = false;
-            
+
             const showBanner = () => {
                 if (!shown) {
                     shown = true;
@@ -308,10 +305,8 @@
                 }
             };
 
-            // Show after scroll (better UX - doesn't interrupt first impression)
             window.addEventListener('scroll', showBanner, { once: true, passive: true });
-            
-            // Fallback: show after 3 seconds if user hasn't scrolled
+
             setTimeout(() => {
                 if (!shown) {
                     showBanner();
@@ -326,7 +321,7 @@
     checkCookieConsent();
 
     // =============================================
-    // SMOOTH SCROLL POLYFILL (for older browsers)
+    // SMOOTH SCROLL POLYFILL
     // =============================================
     function smoothScrollTo(target, duration) {
         const start = window.pageYOffset;
@@ -352,19 +347,22 @@
     }
 
     // =============================================
-    // NAVBAR SCROLL EFFECT
+    // NAVBAR SCROLL EFFECT + SCROLL PROGRESS
     // =============================================
     const nav = document.querySelector('nav');
-    let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
+
+        // Navbar effect
         if (currentScroll > 50) {
             nav.classList.add('scrolled');
         } else {
             nav.classList.remove('scrolled');
         }
-        lastScroll = currentScroll;
+
+        // Scroll progress bar
+        updateScrollProgress();
     }, { passive: true });
 
     // =============================================

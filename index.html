@@ -68,12 +68,15 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
 
@@ -102,6 +105,10 @@
 
     <main id="main-content">
         <section class="hero">
+            <!-- Animated blob shapes -->
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+
             <div class="hero-container">
                 <div class="hero-content">
                     <span class="hero-slogan">Pursuing Visibility</span>
@@ -132,6 +139,7 @@
 
         <section class="services" id="servizi">
             <div class="section-header">
+                <span class="section-number">01</span>
                 <p class="section-tag">Servizi</p>
                 <h2>Cosa possiamo fare per te</h2>
                 <p>Soluzioni complete per costruire e far crescere la tua presenza online</p>
@@ -139,7 +147,7 @@
             <div class="services-grid">
                 <div class="service-card animate-on-scroll">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                         </svg>
                     </div>
@@ -148,7 +156,7 @@
                 </div>
                 <div class="service-card animate-on-scroll delay-1">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
@@ -157,7 +165,7 @@
                 </div>
                 <div class="service-card animate-on-scroll delay-2">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                         </svg>
                     </div>
@@ -166,7 +174,7 @@
                 </div>
                 <div class="service-card animate-on-scroll delay-3">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                         </svg>
                     </div>
@@ -182,6 +190,7 @@
  ____________________________________________
         <section class="portfolio" id="portfolio">
             <div class="section-header">
+                <span class="section-number">02</span>
                 <p class="section-tag">Portfolio</p>
                 <h2>I nostri lavori recenti</h2>
                 <p>Progetti reali, risultati concreti</p>
@@ -294,6 +303,7 @@
 -->
         <section class="team" id="chi-siamo">
             <div class="section-header">
+                <span class="section-number">02</span>
                 <p class="section-tag">Chi Siamo</p>
                 <h2>Il team dietro Tramite</h2>
                 <p>Professionisti dedicati al tuo successo digitale</p>
@@ -336,6 +346,7 @@
 -->
         <section class="why-us">
             <div class="section-header">
+                <span class="section-number">03</span>
                 <p class="section-tag">Perché Noi</p>
                 <h2>Cosa ci rende diversi</h2>
                 <p>Non siamo la solita agenzia. Ecco perché i clienti ci scelgono.</p>
@@ -375,22 +386,23 @@
         <section class="quote-section" id="preventivo">
             <div class="quote-container">
                 <div class="quote-info">
+                    <span class="section-number">04</span>
                     <h2>Richiedi un preventivo</h2>
                     <p>Raccontaci il tuo progetto. Analizzeremo le tue esigenze e ti invieremo una proposta dettagliata entro 24 ore.</p>
                     <div class="quote-benefit">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                         <span>Preventivo gratuito e dettagliato</span>
                     </div>
                     <div class="quote-benefit">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                         <span>Risposta entro 24 ore</span>
                     </div>
                     <div class="quote-benefit">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                         <span>Nessun impegno richiesto</span>
@@ -398,21 +410,21 @@
                 </div>
                 <form class="quote-form" id="quoteForm" action="https://formspree.io/f/mdagdopv" method="POST" aria-label="Modulo richiesta preventivo" novalidate>
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group floating">
+                            <input type="text" id="name" name="name" required placeholder=" " aria-required="true" aria-describedby="name-error">
                             <label for="name">Nome *</label>
-                            <input type="text" id="name" name="name" required placeholder="Il tuo nome" aria-required="true" aria-describedby="name-error">
                             <span class="error-message" id="name-error" role="alert" aria-live="polite"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group floating">
+                            <input type="email" id="email" name="email" required placeholder=" " aria-required="true" aria-describedby="email-error">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required placeholder="La tua email" aria-required="true" aria-describedby="email-error">
                             <span class="error-message" id="email-error" role="alert" aria-live="polite"></span>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group floating">
+                            <input type="tel" id="phone" name="phone" placeholder=" " aria-describedby="phone-error">
                             <label for="phone">Telefono</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Il tuo numero" aria-describedby="phone-error">
                             <span class="error-message" id="phone-error" role="alert" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
@@ -427,9 +439,9 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group floating">
+                        <textarea id="message" name="message" required placeholder=" " aria-required="true" aria-describedby="message-error"></textarea>
                         <label for="message">Descrivi il tuo progetto *</label>
-                        <textarea id="message" name="message" required placeholder="Raccontaci di cosa hai bisogno, i tuoi obiettivi e qualsiasi dettaglio utile..." aria-required="true" aria-describedby="message-error"></textarea>
                         <span class="error-message" id="message-error" role="alert" aria-live="polite"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">Invia richiesta</button>
@@ -439,13 +451,14 @@
 
         <section class="contact-section" id="contatti">
             <div class="section-header">
+                <span class="section-number">05</span>
                 <p class="section-tag">Contatti</p>
                 <h2>Parliamo del tuo progetto</h2>
             </div>
             <div class="contact-grid">
                 <div class="contact-card animate-on-scroll">
                     <div class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                     </div>
@@ -463,7 +476,7 @@
                 </div>
                 <div class="contact-card animate-on-scroll delay-2">
                     <div class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
@@ -482,14 +495,14 @@
                 <p class="footer-slogan">Pursuing Visibility</p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/tramitemarketing" aria-label="Instagram" title="Seguici su Instagram" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
                     <!--
                     <a href="https://www.linkedin.com/company/tramitemarketing" aria-label="LinkedIn" title="Seguici su LinkedIn" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </a>
                     <a href="https://www.facebook.com/tramitemarketing" aria-label="Facebook" title="Seguici su Facebook" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </a>
                     -->
                 </div>
