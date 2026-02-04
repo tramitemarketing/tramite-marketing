@@ -54,12 +54,19 @@
             if (target) {
                 e.preventDefault();
                 const navHeight = document.querySelector('nav').offsetHeight;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                const offset = 20; // Extra spacing
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - offset;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                // Fallback for browsers that don't support smooth scroll
+                if ('scrollBehavior' in document.documentElement.style) {
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Smooth scroll polyfill for older browsers
+                    smoothScrollTo(targetPosition, 600);
+                }
             }
         });
     });
@@ -187,9 +194,17 @@
     const formFields = quoteForm.querySelectorAll('input, textarea');
 
     formFields.forEach(field => {
-        field.addEventListener('blur', () => formValidation.validateField(field));
+        // Real-time validation on input (for better UX)
         field.addEventListener('input', () => {
-            if (field.closest('.form-group').classList.contains('error')) {
+            const formGroup = field.closest('.form-group');
+            if (formGroup.classList.contains('error') || field.value.trim().length > 0) {
+                formValidation.validateField(field);
+            }
+        });
+        
+        // Validation on blur (for required fields)
+        field.addEventListener('blur', () => {
+            if (field.hasAttribute('required') || field.value.trim().length > 0) {
                 formValidation.validateField(field);
             }
         });
@@ -208,9 +223,12 @@
         const form = e.target;
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
+        const originalHTML = submitBtn.innerHTML;
 
-        submitBtn.textContent = 'Invio in corso...';
+        // Add loading state
+        submitBtn.innerHTML = '<span class="btn-spinner"></span> Invio in corso...';
         submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
 
         fetch(form.action, {
             method: 'POST',
@@ -221,33 +239,38 @@
         })
         .then(response => {
             if (response.ok) {
-                submitBtn.textContent = 'Richiesta inviata!';
-                submitBtn.style.background = '#10B981';
+                submitBtn.innerHTML = '✓ Richiesta inviata!';
+                submitBtn.classList.remove('loading');
+                submitBtn.classList.add('success');
                 form.reset();
 
-                // Remove success classes
+                // Remove success classes from form groups
                 form.querySelectorAll('.form-group').forEach(group => {
                     group.classList.remove('success', 'error');
                 });
 
+                // Scroll to form to show success
+                submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
                 setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.background = '';
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.classList.remove('success');
                     submitBtn.disabled = false;
-                }, 3000);
+                }, 4000);
             } else {
                 throw new Error('Errore invio');
             }
         })
         .catch(error => {
-            submitBtn.textContent = 'Errore - Riprova';
-            submitBtn.style.background = '#EF4444';
+            submitBtn.innerHTML = '✗ Errore - Riprova';
+            submitBtn.classList.remove('loading');
+            submitBtn.classList.add('error');
             submitBtn.disabled = false;
 
             setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = '';
-            }, 3000);
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.classList.remove('error');
+            }, 4000);
         });
     });
 
@@ -274,9 +297,26 @@
     function checkCookieConsent() {
         const stored = localStorage.getItem('cookieConsent');
         if (!stored) {
+            // Show cookie banner after user scrolls or after 3 seconds
+            let shown = false;
+            
+            const showBanner = () => {
+                if (!shown) {
+                    shown = true;
+                    cookieBanner.classList.add('visible');
+                    window.removeEventListener('scroll', showBanner);
+                }
+            };
+
+            // Show after scroll (better UX - doesn't interrupt first impression)
+            window.addEventListener('scroll', showBanner, { once: true, passive: true });
+            
+            // Fallback: show after 3 seconds if user hasn't scrolled
             setTimeout(() => {
-                cookieBanner.classList.add('visible');
-            }, 1500);
+                if (!shown) {
+                    showBanner();
+                }
+            }, 3000);
         }
     }
 
@@ -284,6 +324,48 @@
     cookieReject.addEventListener('click', () => setCookieConsent(false));
 
     checkCookieConsent();
+
+    // =============================================
+    // SMOOTH SCROLL POLYFILL (for older browsers)
+    // =============================================
+    function smoothScrollTo(target, duration) {
+        const start = window.pageYOffset;
+        const distance = target - start;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = easeInOutQuad(timeElapsed, start, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    // =============================================
+    // NAVBAR SCROLL EFFECT
+    // =============================================
+    const nav = document.querySelector('nav');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+        lastScroll = currentScroll;
+    }, { passive: true });
 
     // =============================================
     // DYNAMIC YEAR

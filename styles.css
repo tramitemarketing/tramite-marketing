@@ -13,7 +13,7 @@
     --off-white: #FAFAFA;
     --gray-light: #F0F0F0;
     --gray: #6B7280;
-    --gray-dark: #4B5563;
+    --gray-dark: #374151; /* Improved contrast */
     --dark: #1A1A2E;
 }
 
@@ -37,10 +37,13 @@ body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--white);
     color: var(--dark);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* =============================================
@@ -90,10 +93,17 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 100;
     border-bottom: 1px solid var(--gray-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease;
+}
+
+nav.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .logo {
@@ -199,10 +209,11 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s ease;
     z-index: 90;
 }
 
@@ -220,17 +231,24 @@ nav {
     display: flex;
     align-items: center;
     padding: 6rem 5% 3rem;
-    background: var(--off-white);
+    background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
     position: relative;
     overflow: hidden;
 }
 
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(230, 57, 70, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
 .hero-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: center;
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     width: 100%;
 }
@@ -238,6 +256,9 @@ nav {
 .hero-content {
     position: relative;
     z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .hero-slogan {
@@ -261,7 +282,9 @@ nav {
 
 .hero h1 span {
     color: var(--red);
+    display: inline-block;
     animation: colorGlow 4s ease-in-out infinite;
+    position: relative;
 }
 
 .hero p {
@@ -277,15 +300,23 @@ nav {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
     animation: fadeUp 0.6s ease-out 0.3s backwards;
 }
 .hero-stats {
     display: flex;
-    gap: 2.5rem;
+    gap: clamp(1.5rem, 4vw, 3rem);
     margin-top: 2.5rem;
     padding-top: 2rem;
     border-top: 1px solid var(--gray-light);
     animation: fadeUp 0.6s ease-out 0.4s backwards;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-stat {
+    text-align: center;
+    min-width: 120px;
 }
 
 .hero-stat h3 {
@@ -293,6 +324,7 @@ nav {
     font-weight: 700;
     color: var(--dark);
     letter-spacing: -1px;
+    margin-bottom: 0.25rem;
 }
 
 .hero-stat p {
@@ -333,13 +365,19 @@ nav {
     font-weight: 700;
     font-size: 1.1rem;
     flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(230, 57, 70, 0.5);
     background: linear-gradient(110deg, var(--red) 30%, var(--coral) 50%, var(--red) 70%);
     background-size: 200% 100%;
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
 }
 
 .btn-secondary {
@@ -411,15 +449,20 @@ section {
     background: var(--off-white);
     padding: 2.5rem 2rem;
     border-radius: 16px;
-    transition: all 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
     border: 1px solid transparent;
+    will-change: transform;
 }
 
 .service-card:hover {
     background: var(--white);
-    border-color: var(--gray-light);
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    border-color: var(--red-light);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(230, 57, 70, 0.12);
+}
+
+.service-card:active {
+    transform: translateY(-3px);
 }
 
 .service-icon {
@@ -658,12 +701,18 @@ section {
     padding: 2.5rem 2rem;
     border-radius: 16px;
     border: 1px solid var(--gray-light);
-    transition: all 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change: transform;
 }
 
 .team-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(230, 57, 70, 0.1);
+    border-color: var(--red-light);
+}
+
+.team-card:active {
+    transform: translateY(-3px);
 }
 
 .team-photo {
@@ -905,7 +954,7 @@ section {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--red);
-    box-shadow: 0 0 0 3px var(--red-light);
+    box-shadow: 0 0 0 3px var(--red-light), 0 4px 12px rgba(230, 57, 70, 0.15);
 }
 
 .form-group textarea {
@@ -924,6 +973,50 @@ section {
     justify-content: center;
     padding: 1rem;
     font-size: 1rem;
+    position: relative;
+    min-height: 50px;
+}
+
+.btn-primary.loading {
+    cursor: wait;
+    opacity: 0.8;
+}
+
+.btn-primary.success {
+    background: #10B981 !important;
+    animation: successPulse 0.5s ease;
+}
+
+.btn-primary.error {
+    background: #EF4444 !important;
+    animation: errorShake 0.5s ease;
+}
+
+.btn-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 /* Form Error States */
@@ -932,12 +1025,19 @@ section {
 .form-group.error textarea {
     border-color: #EF4444;
     background: #FEF2F2;
+    animation: errorField 0.3s ease;
 }
 
 .form-group.error input:focus,
 .form-group.error select:focus,
 .form-group.error textarea:focus {
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2), 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+@keyframes errorField {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
 }
 
 .error-message {
@@ -984,7 +1084,12 @@ section {
 
 .contact-card:hover {
     background: var(--white);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 25px rgba(230, 57, 70, 0.1);
+    transform: translateY(-3px);
+}
+
+.contact-card:active {
+    transform: translateY(-1px);
 }
 
 .contact-icon {
@@ -1015,15 +1120,43 @@ section {
     font-size: 0.9rem;
 }
 
+/* WhatsApp contact card – icon e link coerenti con le altre card */
+.contact-icon-whatsapp {
+    background: rgba(37, 211, 102, 0.12);
+}
+
+.contact-icon-whatsapp svg {
+    color: #25D366;
+}
+
+.contact-card-whatsapp a {
+    color: #25D366;
+    font-weight: 500;
+}
+
+.contact-card-whatsapp a:hover {
+    color: #1da851;
+    text-decoration: underline;
+}
+
 .contact-card a {
     color: var(--red);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
+    display: inline-block;
+    padding: 0.25rem 0;
 }
 
 .contact-card a:hover {
     color: var(--red-dark);
+    text-decoration: underline;
+}
+
+.contact-card a:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 /* =============================================
@@ -1155,13 +1288,15 @@ footer {
 /* Scroll Animations */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0); /* GPU acceleration */
     transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
 }
 
 .animate-on-scroll.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0); /* GPU acceleration */
+    will-change: auto;
 }
 
 /* Staggered animations */
@@ -1182,10 +1317,7 @@ footer {
     .hero h1,
     .hero p,
     .hero-buttons,
-    .hero-image,
     .hero-stats,
-    .hero-image-placeholder,
-    .hero-image img,
     .btn-primary,
     .feature-number {
         animation: none;
@@ -1281,10 +1413,19 @@ footer {
         border-bottom: 1px solid var(--gray-light);
     }
 
-    .nav-links a {
+        .nav-links a {
         display: block;
-        padding: 1rem 0;
+        padding: 1.25rem 0;
         font-size: 1rem;
+        min-height: 48px; /* Touch target */
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease;
+    }
+
+    .nav-links a:active {
+        background: var(--off-white);
+        padding-left: 0.5rem;
     }
 
     .nav-links .nav-cta {
@@ -1295,26 +1436,19 @@ footer {
         white-space: normal;
     }
 
-    /* Hero goes single column */
+    /* Hero centered */
     .hero-container {
-        grid-template-columns: 1fr;
         text-align: center;
-    }
-
-    .hero-image {
-        order: -1;
-        max-width: 550px;
-        margin: 0 auto;
-        width: 100%;
     }
 
     .hero-buttons {
         justify-content: center;
     }
 
-    .hero-stats {
+        .hero-stats {
         justify-content: center;
         flex-wrap: wrap;
+        gap: 1.5rem;
     }
 
     /* Quote section single column */
@@ -1363,10 +1497,6 @@ footer {
         letter-spacing: 1.5px;
     }
 
-    .hero-image {
-        max-width: 400px;
-    }
-
     .hero-stats {
         flex-direction: column;
         gap: 1.25rem;
@@ -1393,12 +1523,6 @@ footer {
     .hero-buttons .btn {
         width: 100%;
         justify-content: center;
-    }
-
-    .hero-image-placeholder {
-        aspect-ratio: 16/10;
-        font-size: 0.8rem;
-        padding: 1.5rem;
     }
 
     /* Sections Mobile */
@@ -1705,14 +1829,6 @@ footer {
 
     .hero h1 {
         font-size: 1.5rem;
-    }
-
-    .hero-image {
-        max-width: 100%;
-    }
-
-    .hero-image-placeholder {
-        border-radius: 12px;
     }
 
     section {
