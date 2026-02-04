@@ -102,6 +102,13 @@
         if (scrollHeight > 0) {
             const progress = (scrollTop / scrollHeight) * 100;
             scrollProgress.style.width = progress + '%';
+
+            // Show/hide: only visible once user has scrolled
+            if (scrollTop > 10) {
+                scrollProgress.classList.add('visible');
+            } else {
+                scrollProgress.classList.remove('visible');
+            }
         }
     }
 

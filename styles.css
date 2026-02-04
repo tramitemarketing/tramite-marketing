@@ -91,6 +91,12 @@ body {
     z-index: 200;
     width: 0%;
     will-change: width;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-progress.visible {
+    opacity: 1;
 }
 
 /* =============================================
@@ -379,13 +385,19 @@ nav.scrolled {
     animation: fadeUp 0.6s ease-out 0.1s backwards;
 }
 
-/* Gradient text on "in 14 giorni" */
+/* Gradient text + soft glow on "in 14 giorni" */
 .hero h1 span {
     background: linear-gradient(135deg, var(--red), var(--coral), #ff8a80);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
+    animation: subtleGlow 4s ease-in-out infinite;
+}
+
+@keyframes subtleGlow {
+    0%, 100% { filter: drop-shadow(0 0 6px rgba(230, 57, 70, 0.25)); }
+    50% { filter: drop-shadow(0 0 16px rgba(230, 57, 70, 0.45)); }
 }
 
 .hero p {
@@ -458,7 +470,9 @@ nav.scrolled {
 
 .btn-primary {
     color: white;
-    background: linear-gradient(135deg, var(--red), var(--coral));
+    background: linear-gradient(110deg, var(--red) 30%, var(--coral) 50%, var(--red) 70%);
+    background-size: 200% 100%;
+    animation: shimmer 6s linear infinite;
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
@@ -467,6 +481,11 @@ nav.scrolled {
     font-size: 1.05rem;
     flex-shrink: 0;
     box-shadow: var(--shadow-red-sm);
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
 }
 
 .btn-primary:hover {
