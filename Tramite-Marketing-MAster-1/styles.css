@@ -629,6 +629,25 @@ section {
     transform: translateY(-2px);
 }
 
+/* Large background icon watermark */
+.service-bg-icon {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    width: 130px;
+    height: 130px;
+    color: rgba(0, 0, 0, 0.04);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.service-card .service-icon,
+.service-card h3,
+.service-card p {
+    position: relative;
+    z-index: 1;
+}
+
 .service-icon {
     width: 52px;
     height: 52px;
