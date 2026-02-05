@@ -632,13 +632,14 @@ section {
 /* Large background icon watermark */
 .service-bg-icon {
     position: absolute;
-    bottom: -15px;
-    right: -15px;
-    width: 130px;
-    height: 130px;
-    color: rgba(0, 0, 0, 0.04);
+    bottom: -30px;
+    right: -30px;
+    width: 200px;
+    height: 200px;
+    color: rgba(0, 0, 0, 0.045);
     pointer-events: none;
     z-index: 0;
+    stroke-width: 1.2;
 }
 
 .service-card .service-icon,
