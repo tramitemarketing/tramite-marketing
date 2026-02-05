@@ -640,6 +640,12 @@ section {
     pointer-events: none;
     z-index: 0;
     stroke-width: 1.2;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.service-card:hover .service-bg-icon {
+    transform: scale(1.15);
+    color: rgba(0, 0, 0, 0.06);
 }
 
 /* Small cards (SEO, Social Media) - smaller icon, still shifted right */
