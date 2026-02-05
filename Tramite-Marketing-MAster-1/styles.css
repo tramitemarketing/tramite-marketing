@@ -632,23 +632,23 @@ section {
 /* Large background icon watermark */
 .service-bg-icon {
     position: absolute;
-    top: -60px;
-    right: -50px;
-    width: 400px;
-    height: 400px;
+    top: -70px;
+    right: -100px;
+    width: 480px;
+    height: 480px;
     color: rgba(0, 0, 0, 0.045);
     pointer-events: none;
     z-index: 0;
     stroke-width: 1.2;
 }
 
-/* Small cards (SEO, Social Media) - icon bigger and more to the right */
+/* Small cards (SEO, Social Media) - smaller icon, still shifted right */
 .service-card:nth-child(2) .service-bg-icon,
 .service-card:nth-child(3) .service-bg-icon {
-    width: 450px;
-    height: 450px;
-    top: -80px;
-    right: -80px;
+    width: 280px;
+    height: 280px;
+    top: -40px;
+    right: -60px;
 }
 
 .service-card .service-icon,
