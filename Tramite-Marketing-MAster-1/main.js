@@ -357,19 +357,26 @@
     // NAVBAR SCROLL EFFECT + SCROLL PROGRESS
     // =============================================
     const nav = document.querySelector('nav');
+    let scrollTicking = false;
 
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                const currentScroll = window.pageYOffset;
 
-        // Navbar effect
-        if (currentScroll > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+                // Navbar effect
+                if (currentScroll > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+
+                // Scroll progress bar
+                updateScrollProgress();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
         }
-
-        // Scroll progress bar
-        updateScrollProgress();
     }, { passive: true });
 
     // =============================================

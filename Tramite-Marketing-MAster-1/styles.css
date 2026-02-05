@@ -1726,8 +1726,14 @@ footer {
         text-align: center;
     }
 
+    .quote-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .quote-benefit {
-        justify-content: center;
+        justify-content: flex-start;
     }
 }
 
@@ -1743,6 +1749,7 @@ footer {
     .hero {
         padding-top: var(--sp-8);
         min-height: 100vh;
+        min-height: 100dvh;
         padding-bottom: var(--sp-4);
     }
 
@@ -1773,9 +1780,15 @@ footer {
     }
 
     .hero-stats {
-        flex-direction: column;
+        flex-direction: row;
         gap: var(--sp-2);
-        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+
+    .hero-stat {
+        min-width: auto;
+        flex: 1;
     }
 
     .hero-stat h3 {
@@ -1783,7 +1796,7 @@ footer {
     }
 
     .hero-stat p {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
     .hero-buttons {
@@ -2031,10 +2044,14 @@ footer {
         padding: 0.8rem;
     }
 
-    /* Contact mobile */
+    /* Contact mobile - keep side by side for first two, full width for third */
     .contact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: var(--sp-2);
+    }
+
+    .contact-card:last-child {
+        grid-column: 1 / -1;
     }
 
     .contact-card {
@@ -2063,7 +2080,7 @@ footer {
     .footer-content {
         flex-direction: column;
         text-align: center;
-        gap: var(--sp-2);
+        gap: var(--sp-3);
     }
 
     .footer-logo {
@@ -2075,8 +2092,10 @@ footer {
     }
 
     .footer-links {
-        flex-direction: column;
-        gap: var(--sp-1);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--sp-2);
     }
 
     .footer-links a {
@@ -2100,6 +2119,123 @@ footer {
     .cookie-buttons {
         width: 100%;
         justify-content: center;
+    }
+
+    /* === MOBILE PERFORMANCE: Remove backdrop-filter blur === */
+    nav {
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .nav-overlay {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .team-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .quote-form {
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .contact-card {
+        background: rgba(250, 250, 250, 0.95);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .cookie-banner {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .btn-secondary {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    /* === MOBILE PERFORMANCE: Disable expensive animations === */
+    .hero-blob {
+        animation: none;
+        filter: blur(40px);
+    }
+
+    .hero-blob-1 {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hero-blob-2 {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero h1 span {
+        animation: none;
+        filter: none;
+    }
+
+    .btn-primary {
+        animation: none;
+        background-size: 100% 100%;
+        background: var(--red);
+    }
+
+    /* Disable hover transforms on touch devices (prevent sticky hover) */
+    .service-card:hover,
+    .team-card:hover,
+    .contact-card:hover,
+    .portfolio-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .service-card:hover::before {
+        opacity: 0;
+    }
+
+    .service-card::before {
+        display: none;
+    }
+
+    .service-card:active {
+        transform: translateY(-2px);
+    }
+
+    .team-card:active {
+        transform: translateY(-3px);
+    }
+
+    .contact-card:active {
+        transform: translateY(-2px);
+    }
+
+    /* === MOBILE PERFORMANCE: Reduce will-change and rendering overhead === */
+    .service-card,
+    .team-card {
+        will-change: auto;
+    }
+
+    .animate-on-scroll {
+        will-change: auto;
+    }
+
+    body {
+        text-rendering: auto;
+    }
+
+    /* Simplify hero pseudo-elements on mobile */
+    .hero::before {
+        display: none;
     }
 }
 
@@ -2134,8 +2270,26 @@ footer {
         gap: var(--sp-1);
     }
 
+    /* Contact grid back to 1 column on small phones */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card:last-child {
+        grid-column: auto;
+    }
+
     .contact-card {
         padding: var(--sp-2);
+    }
+
+    /* Hero stats compact for small screens */
+    .hero-stats {
+        gap: var(--sp-1);
+    }
+
+    .hero-stat h3 {
+        font-size: 1.3rem;
     }
 }
 
@@ -2162,15 +2316,16 @@ footer {
     }
 
     .hero-stats {
-        gap: var(--sp-2);
+        flex-wrap: wrap;
+        gap: var(--sp-1);
     }
 
     .hero-stat h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .hero-stat p {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     .testimonial-card {
