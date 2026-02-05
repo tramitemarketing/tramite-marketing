@@ -1140,7 +1140,7 @@ section {
 
 .form-group.floating label {
     position: absolute;
-    top: calc(50% - 0.5rem);
+    top: calc(50% - 0.35rem);
     left: 1rem;
     transform: translateY(-50%);
     color: var(--gray);
@@ -1153,7 +1153,7 @@ section {
 
 /* Textarea label positions at top */
 .form-group.floating textarea ~ label {
-    top: 1.25rem;
+    top: 0.9rem;
     transform: translateY(0);
 }
 
@@ -1227,6 +1227,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--sp-2);
+    align-items: end;
 }
 
 .quote-form .btn-primary {
