@@ -2243,6 +2243,17 @@ footer {
         display: none;
     }
 
+    /* Disable bg icon hover on mobile (prevents sticky state) */
+    .service-card:hover .service-bg-icon {
+        transform: none;
+        color: rgba(0, 0, 0, 0.045);
+    }
+
+    .service-card:active .service-bg-icon {
+        transform: scale(1.1);
+        color: rgba(230, 57, 70, 0.07);
+    }
+
     .service-card:active {
         transform: translateY(-2px);
     }
