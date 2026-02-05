@@ -645,7 +645,7 @@ section {
 
 .service-card:hover .service-bg-icon {
     transform: scale(1.15);
-    color: rgba(0, 0, 0, 0.06);
+    color: rgba(230, 57, 70, 0.08);
 }
 
 /* Small cards (SEO, Social Media) - smaller icon, still shifted right */
